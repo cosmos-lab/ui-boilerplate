@@ -1,0 +1,18 @@
+@import "theme.scss";
+@import "base.scss";
+
+@include themable(
+  theme-1,
+  #000000,
+  #ffffff,
+  #ffffff,
+  #0000ff,
+  #eeeeee,
+  #f1dcdc,
+  #777777,
+  #0000ff
+);
+
+.subtext {
+  font-size: 80%;
+}

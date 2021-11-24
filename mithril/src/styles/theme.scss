@@ -1,0 +1,59 @@
+@mixin themable(
+  $theme-name,
+  $color,
+  $colorContrast,
+  $bgDefault,
+  $bgPrimary,
+  $bgSecondary,
+  $borderSecondary,
+  $textSecondary,
+  $link
+) {
+  .#{$theme-name} {
+    color: $color;
+
+    .bgDefault {
+      background-color: $bgDefault;
+    }
+
+    .bgPrimary {
+      color: $colorContrast;
+      background-color: $bgPrimary;
+    }
+
+    .bgHoverPrimary {
+      cursor: pointer;
+      &:hover {
+        color: $colorContrast;
+        background-color: $bgPrimary;
+      }
+    }
+
+    .bgSecondary {
+      background-color: $bgSecondary;
+    }
+
+    .bgHoverSecondary {
+      cursor: pointer;
+      &:hover {
+        background-color: $bgSecondary;
+      }
+    }
+
+    .borderSecondary {
+      border-color: $borderSecondary;
+    }
+
+    .textSecondary {
+      color: $textSecondary;
+    }
+
+    .link {
+      cursor: pointer;
+      color: $link;
+      &:hover {
+        color: #000000;
+      }
+    }
+  }
+}

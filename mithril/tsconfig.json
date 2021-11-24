@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "lib": ["esnext", "dom"],
+    "jsx": "react",
+    "jsxFactory": "m",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["./*"],
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@views/*": ["./src/views/*"],
+      "@state/*": ["./src/state/*"],
+      "@styles/*": ["./src/styles/*"]
+    }
+  },
+  "allowSyntheticDefaultImports": true,
+  "forceConsistentCasingInFileNames": false,
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", ".cache", "./static"]
+}
