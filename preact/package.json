@@ -1,0 +1,43 @@
+{
+  "name": "preact-minimal",
+  "version": "2.0.0",
+  "description": "Preact minimal structure",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm run clean && webpack serve --mode development --host 0.0.0.0",
+    "dev": "npm run clean && webpack --mode development  --watch",
+    "prod": "npm run clean && webpack --mode production  --watch",
+    "build": "npm run clean && webpack --mode production",
+    "lint": "eslint . --ext .ts",
+    "clean": "rimraf ../server/embed"
+  },
+  "dependencies": {
+    "classnames": "^2.3.1",
+    "preact": "^10.6.0",
+    "redux": "^4.1.2",
+    "xhr": "^2.6.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "copy-webpack-plugin": "^10.0.0",
+    "css-loader": "^6.5.1",
+    "eslint": "^8.3.0",
+    "eslint-plugin-preact": "^0.1.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "file-loader": "^6.2.0",
+    "html-loader": "^3.0.1",
+    "html-webpack-plugin": "^5.5.0",
+    "rimraf": "^3.0.2",
+    "sass": "^1.49.7",
+    "sass-loader": "^10.2.0",
+    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.2.5",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.2",
+    "webpack": "^5.64.3",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.5.0"
+  }
+}

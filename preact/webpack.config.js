@@ -1,18 +1,17 @@
 const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const CopyPlugin = require("copy-webpack-plugin");
-const webpack = require('webpack');
 
 const config = (env, argv) => {
   return {
     devtool: argv.mode === 'production' ? false : 'source-map',
-    entry: './src/App.ts',
+    entry: './src/index.ts',
     output: {
-      path: path.resolve(__dirname, 'build'),
-      filename: `[fullhash].js`,
+      path: path.resolve(__dirname, '../server/embed'),
+      filename: `[hash].js`,
     },
+
     module: {
       rules: [
         {
@@ -21,7 +20,7 @@ const config = (env, argv) => {
           exclude: /node_modules/
         },
         {
-          test: /\.(scss|css)$/,
+          test: /\.(scss)$/,
           use: [
             'style-loader',
             'css-loader',
@@ -42,10 +41,6 @@ const config = (env, argv) => {
             name: '[name].[ext]',
           },
         },
-        {
-          test: /\.html$/i,
-          loader: "html-loader",
-        },
       ]
     },
     resolve: {
@@ -56,6 +51,7 @@ const config = (env, argv) => {
       ],
       alias: {
         ['@']: path.resolve(__dirname, 'src/'),
+        ['@util']: path.resolve(__dirname, 'src/util/'),
         ['@components']: path.resolve(__dirname, 'src/components/'),
         ['@views']: path.resolve(__dirname, 'src/views/'),
         ['@state']: path.resolve(__dirname, 'src/state/'),
@@ -63,18 +59,32 @@ const config = (env, argv) => {
       }
     },
     plugins: [
-      new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        template: './static/index.html',
-        filename: './index.html',
+        template: '../templates/index.tmpl',
+        filename: './index.tmpl',
+        favicon: './static/favicon.ico',
         chunks: ['main'],
       }),
-      // new CopyPlugin({
-      //   patterns: [
-      //     { from: "source", to: "destination" },
-      //   ],
-      // }),
-
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: "sw/*.*",
+            to() {
+              return "./[name][ext]";
+            },
+          },
+          {
+            from: "static",
+            to: "static",
+          },
+          {
+            from: "../templates/*.html",
+            to() {
+              return "./[name][ext]";
+            },
+          },
+        ],
+      }),
     ],
     optimization: {
       minimize: true,

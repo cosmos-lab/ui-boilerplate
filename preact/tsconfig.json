@@ -1,23 +1,29 @@
 {
   "compilerOptions": {
-    "module": "esnext",
+    "target": "ES5",
+    "module": "ESNext",
+    "allowJs": false,
+    "strict": true,
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "sourceMap": true,
-    "lib": ["esnext", "dom"],
     "jsx": "react",
-    "jsxFactory": "m",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "downlevelIteration": true,
     "baseUrl": ".",
+    "noUnusedLocals": true,
+    // "allowUnusedLabels": true,
     "paths": {
       "*": ["./*"],
       "@/*": ["./src/*"],
+      "@util/*": ["./src/util/*"],
       "@components/*": ["./src/components/*"],
       "@views/*": ["./src/views/*"],
       "@state/*": ["./src/state/*"],
       "@styles/*": ["./src/styles/*"]
     }
   },
-  "allowSyntheticDefaultImports": true,
-  "forceConsistentCasingInFileNames": false,
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", ".cache", "./static"]
+  "exclude": ["node_modules", "**/static/**/*"]
 }
